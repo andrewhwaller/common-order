@@ -1,6 +1,10 @@
-const defaultTheme = require('tailwindcss/defaultTheme')
+const defaultTheme = require('tailwindcss/defaultTheme');
+const colors = require('tailwindcss/colors');
+const formsPlugin = require('@tailwindcss/forms');
+const typographyPlugin = require('@tailwindcss/typography');
+const lineClampPlugin = require('@tailwindcss/line-clamp');
+const aspectRatioPlugin = require('@tailwindcss/aspect-ratio');
 
-/** @type {import("@types/tailwindcss/tailwind-config").TailwindConfig } */
 module.exports = {
   mode: 'jit',
   purge: ['./index.html', './src/**/*.{vue,js,ts,jsx,tsx}'],
@@ -9,12 +13,15 @@ module.exports = {
       fontFamily: {
         sans: ['"Inter var"', ...defaultTheme.fontFamily.sans],
       },
+      colors: {
+        'blue-gray': colors.blueGray,
+      },
     },
   },
   plugins: [
-    require('@tailwindcss/forms'),
-    require('@tailwindcss/typography'),
-    require('@tailwindcss/line-clamp'),
-    require('@tailwindcss/aspect-ratio'),
+    formsPlugin,
+    typographyPlugin,
+    lineClampPlugin,
+    aspectRatioPlugin,
   ],
-}
+};
