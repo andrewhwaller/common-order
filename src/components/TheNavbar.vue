@@ -1,6 +1,6 @@
 <template>
   <div class="relative z-10 flex-shrink-0 flex h-16 bg-white shadow">
-      <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden" @click="sidebarOpen = true">
+      <button class="px-4 border-r border-gray-200 text-gray-500 focus:outline-none focus:ring-2 focus:ring-inset focus:ring-indigo-500 md:hidden" @click="openSidebar()">
         <span class="sr-only">Open sidebar</span>
         <MenuAlt2Icon class="h-6 w-6" aria-hidden="true" />
       </button>
@@ -50,6 +50,7 @@ import {
   MenuAlt2Icon,
 } from '@heroicons/vue/outline';
 import { SearchIcon } from '@heroicons/vue/solid';
+import useNavigationStore from '../stores/navigation';
 
 export default {
   name: 'TheNavbar',
@@ -60,6 +61,15 @@ export default {
     MenuItems,
     MenuAlt2Icon,
     SearchIcon,
+  },
+  setup() {
+    const navStore = useNavigationStore();
+    const { closeSidebar, openSidebar, sidebarOpen } = navStore;
+    return {
+      sidebarOpen,
+      openSidebar,
+      closeSidebar,
+    };
   },
 };
 </script>

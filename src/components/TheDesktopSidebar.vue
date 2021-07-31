@@ -11,10 +11,14 @@
         </div>
         <div class="flex-1 flex flex-col overflow-y-auto">
           <nav class="flex-1 px-2 py-4 bg-sky-800 space-y-1">
-            <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-sky-900 text-white' : 'text-sky-300 hover:bg-sky-700 hover:text-white', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']">
-              <component :is="item.icon" :class="[item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+            <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[isActive(item.href) ? 'bg-gray-900 text-white' : 'text-gray-300 hover:bg-sky-700 hover:text-white', 'group flex items-center px-2 py-2 text-base font-medium rounded-md']">
+              <component :is="item.icon" :class="[isActive(item.href) ? 'text-gray-300' : 'text-sky-400 group-hover:text-sky-300', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
               {{ item.name }}
-            </a>
+            </router-link>
+<!--            <a v-for="item in navigation" :key="item.name" :href="item.href" :class="[item.current ? 'bg-sky-900 text-white' : 'text-sky-300 hover:bg-sky-700 hover:text-white', 'group flex items-center px-2 py-2 text-sm font-medium rounded-md']">-->
+<!--              <component :is="item.icon" :class="[item.current ? 'text-gray-300' : 'text-gray-400 group-hover:text-gray-300', 'mr-3 flex-shrink-0 h-6 w-6']" aria-hidden="true" />-->
+<!--              {{ item.name }}-->
+<!--            </a>-->
           </nav>
         </div>
       </div>
@@ -23,7 +27,7 @@
 </template>
 
 <script>
-import { ref } from 'vue';
+import { computed } from 'vue';
 import {
   Dialog,
   DialogOverlay,
@@ -36,42 +40,12 @@ import {
 } from '@headlessui/vue';
 import {
   BellIcon,
-  CalendarIcon,
-  ChartBarIcon,
-  FolderIcon,
-  HomeIcon,
-  InboxIcon,
   MenuAlt2Icon,
-  UsersIcon,
   XIcon,
 } from '@heroicons/vue/outline';
 import { SearchIcon } from '@heroicons/vue/solid';
-
-const navigation = [
-  {
-    name: 'Dashboard', href: '#', icon: HomeIcon, current: true,
-  },
-  {
-    name: 'Team', href: '#', icon: UsersIcon, current: false,
-  },
-  {
-    name: 'Projects', href: '#', icon: FolderIcon, current: false,
-  },
-  {
-    name: 'Calendar', href: '#', icon: CalendarIcon, current: false,
-  },
-  {
-    name: 'Documents', href: '#', icon: InboxIcon, current: false,
-  },
-  {
-    name: 'Reports', href: '#', icon: ChartBarIcon, current: false,
-  },
-];
-const userNavigation = [
-  { name: 'Your Profile', href: '#' },
-  { name: 'Settings', href: '#' },
-  { name: 'Sign out', href: '#' },
-];
+import useNavigationStore from '../stores/navigation';
+import router from '../router';
 
 export default {
   components: {
@@ -89,12 +63,14 @@ export default {
     XIcon,
   },
   setup() {
-    const sidebarOpen = ref(false);
-
+    const navStore = useNavigationStore();
+    const navigation = navStore.menuItems;
+    const activeRoute = computed(() => router.currentRoute.value.path);
+    const isActive = (path) => path === activeRoute.value;
     return {
+      activeRoute,
+      isActive,
       navigation,
-      userNavigation,
-      sidebarOpen,
     };
   },
 };
