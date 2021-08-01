@@ -3,7 +3,7 @@
     <router-link :to="{ name: 'reader', params: { slug: document.data.slug }}" @click="setCurrentDocument(document)" class="block hover:bg-gray-50">
       <div class="px-4 py-4 sm:px-6">
         <div class="flex items-center justify-between">
-          <span style="font-family: Lusitana;" class="text-sm md:text-base font-medium text-sky-700">
+          <span class="text-sm md:text-base font-medium text-sky-700">
             {{ document.data.name }}
           </span>
           <div class="ml-2 flex-shrink-0 flex">
@@ -14,7 +14,7 @@
         </div>
         <div class="mt-2 sm:flex sm:justify-between">
           <div class="sm:flex">
-            <p style="font-family: Lusitana;" class="mt-2 flex items-center text-sm text-gray-500">
+            <p class="mt-2 flex items-center text-sm text-gray-500">
               {{ document.data.description }}
             </p>
           </div>

@@ -6,7 +6,7 @@
       <TheNavbar />
       <main class="flex-1 relative overflow-y-auto focus:outline-none">
         <div class="py-6">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-24">
+          <div class="max-w-7xl mx-auto px-2 sm:px-2 md:px-36">
             <div class="py-5 px-5 sm:px-10">
               <router-view />
             </div>
