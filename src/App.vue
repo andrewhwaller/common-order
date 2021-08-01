@@ -18,23 +18,23 @@
 </template>
 
 <script>
-import useReaderStore from './stores/documents';
+import { onMounted } from 'vue';
 import TheMobileSidebar from './components/TheMobileSidebar.vue';
-import TheReader from './components/TheReader.vue';
 import TheDesktopSidebar from './components/TheDesktopSidebar.vue';
 import TheNavbar from './components/TheNavbar.vue';
-import TheWelcomeScreen from './components/TheWelcomeScreen.vue';
+import useDocumentsStore from './stores/documents';
 
 export default {
   components: {
     TheNavbar,
     TheDesktopSidebar,
     TheMobileSidebar,
-    TheReader,
-    TheWelcomeScreen,
   },
   setup() {
-
+    const documentsStore = useDocumentsStore();
+    onMounted(async () => {
+      documentsStore.getAllDocuments();
+    });
   },
 };
 </script>

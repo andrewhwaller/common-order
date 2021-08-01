@@ -1,6 +1,6 @@
 <template>
   <div class="flex flex-col">
-    <h1 class="text-lg md:text-4xl text-red-700 font-display mb-5">The Library</h1>
+    <h1 class="text-lg md:text-4xl text-red-700 font-display mb-5">Library</h1>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
       <ul class="divide-y divide-gray-200">
         <LibraryItem v-for="document in documents" :document="document" :key="document.data.name" />
@@ -20,9 +20,6 @@ export default {
   setup() {
     const documentsStore = useDocumentsStore();
     const { documents, setCurrentDocument } = toRefs(documentsStore);
-    onMounted(async () => {
-      documentsStore.getAllDocuments();
-    });
     return {
       documents,
       setCurrentDocument,
