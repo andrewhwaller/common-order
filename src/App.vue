@@ -6,7 +6,7 @@
       <TheNavbar />
       <main class="flex-1 relative overflow-y-auto focus:outline-none">
         <div class="py-6">
-          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-8">
+          <div class="max-w-7xl mx-auto px-4 sm:px-6 md:px-24">
             <div class="py-5 px-5 sm:px-10">
               <router-view />
             </div>
@@ -18,7 +18,7 @@
 </template>
 
 <script>
-import useReaderStore from './stores/reader';
+import useReaderStore from './stores/documents';
 import TheMobileSidebar from './components/TheMobileSidebar.vue';
 import TheReader from './components/TheReader.vue';
 import TheDesktopSidebar from './components/TheDesktopSidebar.vue';
