@@ -12,13 +12,13 @@ const routes = [
 const router = createRouter({
   history,
   routes,
-  // scrollBehavior(to, from, savedPosition) {
-  //   if (to.hash) {
-  //     return {
-  //       selector: to.hash,
-  //       offset: { x: 0, y: 10 },
-  //     };
-  //   }
-  // },
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        offset: { x: 0, y: 10 },
+      };
+    }
+  },
 });
 export default router;
