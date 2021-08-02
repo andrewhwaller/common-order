@@ -9,5 +9,16 @@ const routes = [
   { name: 'reader', path: '/reader', component: TheReader },
   { name: 'library', path: '/library', component: TheLibrary },
 ];
-const router = createRouter({ history, routes });
+const router = createRouter({
+  history,
+  routes,
+  scrollBehavior(to, from, savedPosition) {
+    if (to.hash) {
+      return {
+        selector: to.hash,
+        offset: { x: 0, y: 10 },
+      };
+    }
+  },
+});
 export default router;
