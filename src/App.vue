@@ -16,7 +16,7 @@
         <main class="flex-1 relative overflow-y-auto focus:outline-none">
           <div class="py-16">
             <div class="max-w-7xl mx-auto px-2 sm:px-2 md:px-36">
-              <div class="py-5 px-5 sm:px-10">
+              <div class="max-w-3xl mx-auto">
                 <router-view />
               </div>
             </div>
