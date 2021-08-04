@@ -2,6 +2,7 @@ import { defineStore } from 'pinia';
 
 const useDocumentsStore = defineStore('documents', {
   state: () => ({
+    searchTerm: '',
     currentDocument: null,
     documents: [],
   }),
