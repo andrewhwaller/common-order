@@ -17,7 +17,9 @@
           </div>
         </div>
         <div class="ml-4 flex items-center md:ml-6">
-
+          <div class="ribbon bg-red-500 text-sm whitespace-no-wrap px-5 flex">
+            <span class="mx-auto text-white">alpha</span>
+          </div>
           <!-- Right dropdown -->
 <!--          <Menu as="div" class="ml-3 relative">-->
 <!--            <div>-->
@@ -78,3 +80,18 @@ export default {
   },
 };
 </script>
+
+<style scoped>
+.ribbon {
+  position: absolute;
+  top: 0;
+  right: 0;
+  width: 94px;
+  height: 21px;
+  margin-right: -22px;
+  margin-top: 15px;
+  -ms-transform: rotate(45deg); /* IE 9 */
+  -webkit-transform: rotate(45deg); /* Safari prior 9.0 */
+  transform: rotate(45deg); /* Standard syntax */
+}
+</style>
