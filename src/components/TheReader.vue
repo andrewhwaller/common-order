@@ -73,18 +73,17 @@ export default {
       }
       return currentDocument;
     });
-
     onMounted(async () => {
-      await nextTick();
       window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
     });
     onUpdated(async () => {
-      const markable = document.getElementById('markable');
-      const instance = new Mark(markable);
-      if (searchTerm.value.length > 1) {
+      const instance = new Mark(document.getElementById('markable'));
+      if (searchTerm.value.length > 2) {
         await instance.unmark();
-        await instance.mark(searchTerm.value, { separateWordSearch: false });
-      } else if (searchTerm.value.length <= 1) {
+        await instance.mark(searchTerm.value, {
+          separateWordSearch: false,
+        });
+      } else if (searchTerm.value.length <= 2) {
         await instance.unmark();
       }
       window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
@@ -98,6 +97,8 @@ export default {
 };
 </script>
 
-<style scoped>
-
+<style>
+mark {
+  @apply bg-green-300 rounded-sm;
+}
 </style>
