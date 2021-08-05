@@ -10,7 +10,9 @@ app.use(router);
 
 app.mount('#app');
 
-window.onresize = function () {
-  document.body.height = window.innerHeight;
+const appHeight = () => {
+  const doc = document.documentElement;
+  doc.style.setProperty('--app-height', `${window.innerHeight}px`);
 };
-window.onresize(); // called to initially set the height.
+window.addEventListener('resize', appHeight);
+appHeight();
