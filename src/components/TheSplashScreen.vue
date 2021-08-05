@@ -3,7 +3,7 @@
     <Dialog as="div" static class="fixed inset-0 overflow-hidden">
       <div class="absolute inset-0 overflow-hidden">
         <div class="fixed inset-y-0 right-0 max-w-full flex">
-          <TransitionChild as="template" enter="transform transition ease-in-out duration-500 sm:duration-700" enter-from="-translate-y-full" enter-to="translate-y-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leave-from="translate-y-0" leave-to="-translate-y-full">
+          <TransitionChild as="template" enter="transform transition ease-in-out duration-500" enter-from="-translate-y-full" enter-to="translate-y-0" leave="transform transition ease-in-out duration-500 sm:duration-700" leave-from="translate-y-0" leave-to="-translate-y-full">
             <div class="relative">
               <div class="h-screen w-screen bg-red-800 p-8">
                 <div class="w-full h-full fixed flex flex-col items-center justify-center top-0 left-0 z-50">
