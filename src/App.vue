@@ -1,13 +1,6 @@
 <template>
   <div>
-    <TransitionRoot
-        :show="splashScreen"
-        leave="transition-opacity duration-300"
-        leave-from="opacity-100"
-        leave-to="opacity-0"
-    >
-      <TheSplashScreen />
-    </TransitionRoot>
+    <TheSplashScreen v-bind:display="splashScreen" />
     <div class="h-screen flex overflow-hidden bg-gray-100">
       <TheMobileSidebar />
       <TheDesktopSidebar />
@@ -41,17 +34,16 @@ export default {
     TheDesktopSidebar,
     TheMobileSidebar,
     TheSplashScreen,
-    TransitionRoot,
   },
   setup() {
     const applicationStore = useApplicationStore();
     const { splashScreen } = toRefs(applicationStore);
     const documentsStore = useDocumentsStore();
     onMounted(() => {
+      documentsStore.getAllDocuments();
       setTimeout(async () => {
-        await documentsStore.getAllDocuments();
         applicationStore.hideSplashScreen();
-      }, 2000);
+      }, 1000);
     });
     return {
       splashScreen,
