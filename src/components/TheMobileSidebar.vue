@@ -21,12 +21,31 @@
               <span style="font-family: Lusitana;" class="text-3xl tracking-tight text-blue-gray-700 font-bold leading-6 mt-0.5">Order</span>
             </div>
           </div>
-          <div class="mt-5 flex-1 h-0 overflow-y-auto">
-            <nav class="px-2 space-y-1">
-              <router-link v-for="item in navigation" :key="item.name" :to="item.href" @click="closeSidebar" :class="[isActive(item.href) ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base rounded-md']">
-                <component :is="item.icon" :class="[isActive(item.href) ? 'text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-                {{ item.name }}
-              </router-link>
+          <div class="flex-1 flex flex-col overflow-y-auto">
+            <nav class="flex-1 px-2 py-4 space-y-8 bg-white">
+              <div class="space-y-1">
+                <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[isActive(item.href) ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base rounded-md']">
+                  <component :is="item.icon" :class="[isActive(item.href) ? 'text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+                  {{ item.name }}
+                </router-link>
+              </div>
+              <div class="space-y-1">
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                  External Links
+                </h3>
+                <div class="space-y-1" role="group" aria-labelledby="projects-headline">
+                  <a href="https://commonorder.org" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                  <span class="truncate">
+                    CommonOrder.org
+                  </span>
+                  </a>
+                  <a href="https://www.patreon.com/commonorder" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                  <span class="truncate">
+                    Support the Project
+                  </span>
+                  </a>
+                </div>
+              </div>
             </nav>
           </div>
         </div>
