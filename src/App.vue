@@ -1,5 +1,5 @@
 <template>
-  <div class="h-screen">
+  <div>
     <TransitionRoot
         :show="splashScreen"
         leave="transition-opacity duration-300"
@@ -8,7 +8,7 @@
     >
       <TheSplashScreen />
     </TransitionRoot>
-    <div class="h-full flex overflow-hidden bg-gray-100">
+    <div class="h-screen flex overflow-hidden bg-gray-100">
       <TheMobileSidebar />
       <TheDesktopSidebar />
       <div class="flex flex-col w-0 flex-1 h-full overflow-hidden">
