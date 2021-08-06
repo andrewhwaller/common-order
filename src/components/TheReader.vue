@@ -80,20 +80,25 @@ export default {
       }
       return currentDocument;
     });
+    const markDocument = async () => {
+      if (currentDocument) {
+        const instance = new Mark(document.getElementById('markable'));
+        if (searchTerm.value.length > 2) {
+          await instance.unmark();
+          await instance.mark(searchTerm.value, {
+            separateWordSearch: false,
+          });
+        } else if (searchTerm.value.length <= 2) {
+          await instance.unmark();
+        }
+        window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
+      }
+    };
     onMounted(async () => {
-      window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
+      markDocument();
     });
     onUpdated(async () => {
-      const instance = new Mark(document.getElementById('markable'));
-      if (searchTerm.value.length > 2) {
-        await instance.unmark();
-        await instance.mark(searchTerm.value, {
-          separateWordSearch: false,
-        });
-      } else if (searchTerm.value.length <= 2) {
-        await instance.unmark();
-      }
-      window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
+      markDocument();
     });
     return {
       searchTerm,
