@@ -22,12 +22,12 @@
                 External Links
               </h3>
               <div class="space-y-1" role="group" aria-labelledby="projects-headline">
-                <a href="https://commonorder.org" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                <a href="https://commonorder.org" target="_blank" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                   <span class="truncate">
                     CommonOrder.org
                   </span>
                 </a>
-                <a href="https://www.patreon.com/commonorder" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
+                <a href="https://www.patreon.com/commonorder" target="_blank" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                   <span class="truncate">
                     Support the Project
                   </span>

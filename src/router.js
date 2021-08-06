@@ -10,4 +10,5 @@ const routes = [
   { name: 'library', path: '/library', component: TheLibrary },
 ];
 const router = createRouter({ history, routes });
+
 export default router;
