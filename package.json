@@ -29,7 +29,7 @@
     "eslint-config-airbnb-base": "^14.2.1",
     "eslint-plugin-import": "^2.23.4",
     "eslint-plugin-vue": "^7.14.0",
-    "netlify-cli": "^5.4.1",
+    "netlify-cli": "^6.0.8",
     "postcss": "^8.3.6"
   }
 }
