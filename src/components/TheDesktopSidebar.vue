@@ -19,7 +19,7 @@
             </div>
             <div class="space-y-1">
               <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
-                Language
+                {{ t('sidebar.language') }}
               </h3>
               <TheLanguageSelector />
             </div>
