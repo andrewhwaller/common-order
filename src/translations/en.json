@@ -12,7 +12,8 @@
     "home": "Home",
     "library": "Library",
     "reader": "Reader",
-    "external_links": "Enlaces Externos",
+    "language": "Language",
+    "external_links": "External Links",
     "support": "Support the Project"
   },
   "reader": {
