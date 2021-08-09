@@ -8,7 +8,7 @@
       <div class="flex-1 px-4 flex justify-between">
         <div class="flex-1 flex" v-if="currentDocument && $route.name === 'reader'">
           <div class="w-full flex md:ml-0">
-            <label for="search-field" class="sr-only">Search</label>
+            <label for="search-field" class="sr-only">{{ t('navbar.search_placeholder') }}</label>
             <div class="relative w-full text-gray-400 focus-within:text-gray-600">
               <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
                 <SearchIcon class="h-5 w-5" aria-hidden="true" />
@@ -31,8 +31,8 @@ import {
   MenuAlt2Icon,
 } from '@heroicons/vue/outline';
 import { SearchIcon } from '@heroicons/vue/solid';
-import { computed, toRefs } from 'vue';
-import { useRoute } from 'vue-router';
+import { toRefs } from 'vue';
+import { useI18n } from 'vue-i18n';
 import useNavigationStore from '../stores/navigation';
 import useDocumentsStore from '../stores/documents';
 
@@ -43,11 +43,14 @@ export default {
     SearchIcon,
   },
   setup() {
+    const { t, locale } = useI18n();
     const documentsStore = useDocumentsStore();
     const { currentDocument, searchTerm } = toRefs(documentsStore);
     const navStore = useNavigationStore();
     const { closeSidebar, openSidebar, sidebarOpen } = navStore;
     return {
+      t,
+      locale,
       currentDocument,
       searchTerm,
       sidebarOpen,

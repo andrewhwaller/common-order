@@ -8,13 +8,13 @@ const useNavigationStore = defineStore('navigation', {
     sidebarOpen: false,
     menuItems: [
       {
-        name: 'Home', href: '/', icon: HomeIcon,
+        name: 'Home', href: '/', icon: HomeIcon, ref: 'home',
       },
       {
-        name: 'Library', href: '/library', icon: BookmarkIcon,
+        name: 'Library', href: '/library', icon: BookmarkIcon, ref: 'library',
       },
       {
-        name: 'Reader', href: '/reader', icon: BookOpenIcon,
+        name: 'Reader', href: '/reader', icon: BookOpenIcon, ref: 'reader',
       },
     ],
   }),

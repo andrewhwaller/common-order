@@ -1,0 +1,26 @@
+{
+  "welcome_screen": {
+    "welcome_header": "¡Bienvenido a Common Order!",
+    "welcome_message": "Common Order es un repositorio en línea creciente de recursos doctrinales y litúrgicos de la tradición histórica presbiteriana.",
+    "browse_button": "Navegar por la biblioteca",
+    "learn_button": "Aprende más"
+  },
+  "navbar": {
+    "search_placeholder": "Buscar"
+  },
+  "sidebar": {
+    "home": "Inicio",
+    "library": "Biblioteca",
+    "reader": "Leer",
+    "language": "Idioma",
+    "external_links": "Enlaces Externos",
+    "support": "Apoya el Proyecto"
+  },
+  "reader": {
+    "skeleton_text": "¡Seleccione un texto de la biblioteca para comenzar a leer!"
+  },
+  "library": {
+    "title": "Biblioteca"
+  }
+}
+

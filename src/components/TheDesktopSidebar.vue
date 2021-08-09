@@ -14,12 +14,18 @@
             <div class="space-y-1">
               <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[isActive(item.href) ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base rounded-md']">
                 <component :is="item.icon" :class="[isActive(item.href) ? 'text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
-                {{ item.name }}
+                {{ t(`sidebar['${item.ref}']`) }}
               </router-link>
             </div>
             <div class="space-y-1">
+              <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                {{ t('sidebar.language') }}
+              </h3>
+              <TheLanguageSelector />
+            </div>
+            <div class="space-y-1">
               <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
-                External Links
+                {{ t('sidebar.external_links') }}
               </h3>
               <div class="space-y-1" role="group" aria-labelledby="projects-headline">
                 <a href="https://commonorder.org" target="_blank" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
@@ -29,7 +35,7 @@
                 </a>
                 <a href="https://www.patreon.com/commonorder" target="_blank" class="group flex items-center px-3 py-2 text-sm font-medium text-gray-600 rounded-md hover:text-gray-900 hover:bg-gray-50">
                   <span class="truncate">
-                    Support the Project
+                    {{ t('sidebar.support') }}
                   </span>
                 </a>
               </div>
@@ -59,6 +65,8 @@ import {
   XIcon,
 } from '@heroicons/vue/outline';
 import { SearchIcon } from '@heroicons/vue/solid';
+import { useI18n } from 'vue-i18n';
+import TheLanguageSelector from './TheLanguageSelector.vue';
 import useNavigationStore from '../stores/navigation';
 import router from '../router';
 
@@ -70,6 +78,7 @@ export default {
     MenuButton,
     MenuItem,
     MenuItems,
+    TheLanguageSelector,
     TransitionChild,
     TransitionRoot,
     BellIcon,
@@ -82,7 +91,10 @@ export default {
     const navigation = navStore.menuItems;
     const activeRoute = computed(() => router.currentRoute.value.path);
     const isActive = (path) => path === activeRoute.value;
+    const { t, locale } = useI18n();
     return {
+      t,
+      locale,
       activeRoute,
       isActive,
       navigation,
