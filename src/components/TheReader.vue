@@ -1,29 +1,36 @@
 <template>
   <div>
-    <div id="markable" v-if="currentDocument" class="flex flex-col">
-      <h1 class="text-2xl md:text-4xl text-red-700 font-display mx-auto mb-5">{{ currentDocument.data.name }}</h1>
-      <p class="text-sm md:text-base font-display mx-auto text-justify">{{ currentDocument.data.description }}</p>
-      <div v-for="chapter in filteredDocument.data.chapters" :key="chapter.name" class="mt-10">
-        <div class="flex flex-row">
-          <span class="text-2xl md:text-3xl text-red-700 font-display mr-3">{{ chapter.id }}</span>
-          <span class="text-lg md:text-2xl font-display">{{ chapter.title }}</span>
-        </div>
-        <div v-if="chapter.sections" class="flex flex-col px-5">
-          <div v-for="section in chapter.sections" :key="section.id" class="my-2">
-            <span class="text-base md:text-lg text-red-700 font-display mr-2">§</span>
-            <span class="text-base md:text-lg font-display mr-3">{{ section.id }}</span>
-            <p class="text-base md:text-lg font-display text-justify whitespace-pre-wrap leading-relaxed">{{ section.text }}</p>
+    <div v-if="currentDocument" class="flex flex-col">
+      <h1 id="document-title" class="text-2xl md:text-4xl text-red-700 font-display mx-auto mb-5">{{ currentDocument.data.name }}</h1>
+      <p class="text-sm md:text-base font-display mx-auto text-justify mb-5">{{ currentDocument.data.description }}</p>
+      <TheTableOfContents :chapters="currentDocument.data.chapters" class="mb-5" />
+      <div id="markable">
+        <div v-for="chapter in filteredDocument.data.chapters" :key="chapter.name" v-bind:id="chapter.id" class="pt-10">
+          <div class="flex flex-row">
+            <span class="text-2xl md:text-3xl text-red-700 font-display mr-3">{{ chapter.id }}</span>
+            <span class="text-lg md:text-2xl font-display">{{ chapter.title }}</span>
+            <button type="button" @click.prevent="scrollToTop" class="my-auto ml-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs rounded text-blue-gray-700 bg-blue-gray-100 hover:bg-blue-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+              <span class="text-sm">Return to top</span>
+              <ArrowUpIcon class="ml-2 my-auto h-3 w-3" />
+            </button>
           </div>
-        </div>
-        <div v-else class="flex flex-col px-5">
-          <div class="my-2">
-            <p class="text-base md:text-lg font-display text-justify whitespace-pre-wrap leading-relaxed">{{ chapter.text }}</p>
+          <div v-if="chapter.sections" class="flex flex-col px-5">
+            <div v-for="section in chapter.sections" :key="section.id" class="my-2">
+              <span class="text-base md:text-lg text-red-700 font-display mr-2">§</span>
+              <span class="text-base md:text-lg font-display mr-3">{{ section.id }}</span>
+              <p class="text-base md:text-lg font-display text-justify whitespace-pre-wrap leading-relaxed">{{ section.text }}</p>
+            </div>
+          </div>
+          <div v-else class="flex flex-col px-5">
+            <div class="my-2">
+              <p class="text-base md:text-lg font-display text-justify whitespace-pre-wrap leading-relaxed">{{ chapter.text }}</p>
+            </div>
           </div>
         </div>
       </div>
     </div>
     <div v-else class="flex flex-col">
-      <router-link to="/library" class="relative block w-full h-1/2 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-indigo-500">
+      <router-link to="/library" class="relative block w-full h-1/2 border-2 border-gray-300 border-dashed rounded-lg p-12 text-center hover:border-gray-400 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
         <svg xmlns="http://www.w3.org/2000/svg" class="mx-auto h-12 w-12 text-gray-400" fill="none" viewBox="0 0 24 24" stroke="currentColor">
           <path stroke-linecap="round" stroke-linejoin="round" stroke-width="1" d="M12 6.253v13m0-13C10.832 5.477 9.246 5 7.5 5S4.168 5.477 3 6.253v13C4.168 18.477 5.754 18 7.5 18s3.332.477 4.5 1.253m0-13C13.168 5.477 14.754 5 16.5 5c1.747 0 3.332.477 4.5 1.253v13C19.832 18.477 18.247 18 16.5 18c-1.746 0-3.332.477-4.5 1.253" />
         </svg>
@@ -41,10 +48,16 @@ import {
 } from 'vue';
 import Mark from 'mark.js';
 import { useI18n } from 'vue-i18n';
+import { ArrowUpIcon } from '@heroicons/vue/solid';
+import TheTableOfContents from './TheTableOfContents.vue';
 import useDocumentsStore from '../stores/documents';
 
 export default {
   name: 'TheReader',
+  components: {
+    ArrowUpIcon,
+    TheTableOfContents,
+  },
   setup() {
     const { t, locale } = useI18n();
     const documentsStore = useDocumentsStore();
@@ -82,6 +95,10 @@ export default {
       }
       return currentDocument;
     });
+    const scrollToTop = () => {
+      const main = document.getElementById('main');
+      main.scrollTop = 0;
+    };
     const markDocument = async () => {
       if (currentDocument) {
         const instance = new Mark(document.getElementById('markable'));
@@ -108,6 +125,9 @@ export default {
       searchTerm,
       currentDocument,
       filteredDocument,
+      scrollToTop,
+      ArrowUpIcon,
+      TheTableOfContents,
     };
   },
 };
