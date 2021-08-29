@@ -9,9 +9,8 @@
           <div class="flex flex-row">
             <span class="text-2xl md:text-3xl text-red-700 font-display mr-3">{{ chapter.id }}</span>
             <span class="text-lg md:text-2xl font-display">{{ chapter.title }}</span>
-            <button type="button" @click.prevent="scrollToTop" class="my-auto ml-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs rounded text-blue-gray-700 bg-blue-gray-100 hover:bg-blue-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
-              <span class="text-sm">Return to top</span>
-              <ArrowUpIcon class="ml-2 my-auto h-3 w-3" />
+            <button type="button" @click.prevent="scrollToTop" class="my-auto ml-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs rounded bg-blue-gray-100 hover:bg-blue-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+              <ArrowUpIcon class="h-4 w-4" />
             </button>
           </div>
           <div v-if="chapter.sections" class="flex flex-col px-5">
