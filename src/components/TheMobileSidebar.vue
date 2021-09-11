@@ -1,10 +1,10 @@
 <template>
   <div>
   <div v-if="!sidebarOpen && !splashScreen"
-      class="md:hidden z-40 absolute top-0 left-0 -mr-12 pt-2">
+      class="md:hidden z-40 absolute top-0 left-0 -mr-12 pt-2 pl-1">
     <button
         @click="openSidebar()"
-        class="ml-1 flex items-center justify-center h-10 w-10 rounded-full focus:outline-none focus:ring-2 focus:ring-inset focus:ring-white"
+        class="ml-1 flex items-center justify-center h-10 w-10 rounded-full border bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
         tabindex="0">
       <span class="sr-only">Open sidebar</span>
       <MenuAlt2Icon
@@ -44,13 +44,13 @@
                 </router-link>
               </div>
               <div class="space-y-1">
-                <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   {{ t('sidebar.language') }}
                 </h3>
                 <TheLanguageSelector />
               </div>
               <div class="space-y-1">
-                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   {{ t('sidebar.external_links') }}
                 </h3>
                 <div class="space-y-1" role="group" aria-labelledby="projects-headline">
