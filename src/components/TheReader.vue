@@ -1,6 +1,6 @@
 <template>
   <div>
-    <div id="search" :class="{ 'is-hidden': !showSearch }" class="z-50 px-4 sticky top-0 left-0 right-0 flex flex-1 px-10 md:px-2 lg:px-0" v-if="currentDocument && $route.name === 'reader'">
+    <div id="search" :class="{ 'is-hidden': !showSearch }" class="z-30 px-4 sticky top-0 left-0 right-0 flex flex-1 px-10 md:px-2 lg:px-0" v-if="currentDocument && $route.name === 'reader'">
       <div class="w-full flex md:ml-0 bg-gray-100 px-4 py-2 shadow bg-white">
         <label for="search-field" class="sr-only">{{ t('navbar.search_placeholder') }}</label>
         <div class="relative w-full text-gray-400 focus-within:text-gray-600">
