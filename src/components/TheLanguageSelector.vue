@@ -56,6 +56,10 @@ export default {
         name: 'Español',
         id: 'es',
       },
+      {
+        name: 'Français',
+        id: 'fr',
+      },
     ];
     const selected = computed(() => locales.filter((item) => item.id === locale.value)[0]);
     return {

@@ -5,12 +5,14 @@ import router from './router';
 import App from './App.vue';
 import en from './translations/en.json';
 import es from './translations/es.json';
+import fr from './translations/fr.json';
 import './main.css';
 
 const i18n = createI18n({
   messages: {
     'en-US': en,
     es,
+    fr,
   },
 });
 
