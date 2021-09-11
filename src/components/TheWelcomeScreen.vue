@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col sm:pt-16 sm:pb-16 pb-32 pt-14">
     <div class="max-w-2xl mx-auto text-center py-16 px-4 sm:py-20 sm:px-6 lg:px-8">
       <h1 class="text-2xl md:text-4xl text-red-700 font-semibold font-display mb-5">{{ t('welcome_screen.welcome_header') }}</h1>
       <p class="mt-4 text-lg leading-6 text-gray-900">{{ t('welcome_screen.welcome_message') }}</p>

@@ -1,25 +1,25 @@
 {
   "welcome_screen": {
-    "welcome_header": "Welcome to Common Order!",
-    "welcome_message": "Common Order is a growing online repository of doctrinal and liturgical resources from the historical Presbyterian tradition.",
-    "browse_button": "Browse the library",
-    "learn_button": "Learn more"
+    "welcome_header": "Bienvenue dans Common Order!",
+    "welcome_message": "Common Order est un référentiel en ligne en pleine croissance de ressources doctrinales et liturgiques de la tradition presbytérienne historique.",
+    "browse_button": "Parcourir la bibliothèque",
+    "learn_button": "Apprendre encore plus"
   },
   "navbar": {
-    "search_placeholder": "Search"
+    "search_placeholder": "Rechercher"
   },
   "sidebar": {
-    "home": "Home",
-    "library": "Library",
-    "reader": "Reader",
-    "language": "Language",
-    "external_links": "External Links",
-    "support": "Support the Project"
+    "home": "Accueil",
+    "library": "Bibliothèque",
+    "reader": "Lecteur",
+    "language": "Langue",
+    "external_links": "Liens externes",
+    "support": "Soutenir le projet"
   },
   "reader": {
-    "skeleton_text": "Select a text from the Library to start reading!"
+    "skeleton_text": "Sélectionnez un texte dans la bibliothèque pour commencer à lire!"
   },
   "library": {
-    "title": "Library"
+    "title": "Bibliothèque"
   }
 }

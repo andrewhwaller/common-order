@@ -1,5 +1,27 @@
 <template>
   <div>
+    <div id="search" :class="{ 'is-hidden': !showSearch }" class="z-30 px-4 sticky top-0 left-0 right-0 flex flex-1 px-10 md:px-2 lg:px-0" v-if="currentDocument && $route.name === 'reader'">
+      <div class="w-full flex md:ml-0 bg-gray-100 px-4 py-2 shadow bg-white">
+        <label for="search-field" class="sr-only">{{ t('navbar.search_placeholder') }}</label>
+        <div class="relative w-full text-gray-400 focus-within:text-gray-600">
+          <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
+            <SearchIcon class="h-5 w-5" aria-hidden="true" />
+          </div>
+          <input
+              id="search-field"
+              v-model="searchTerm"
+              class="block w-full h-full pl-8 pr-3 py-2 border-transparent
+              md:text-lg text-gray-900 placeholder-gray-500 focus:outline-none
+              focus:placeholder-gray-400 focus:ring-0 focus:border-transparent
+              sm:text-sm"
+              :placeholder="t('navbar.search_placeholder')"
+              type="search"
+              name="document-search"
+              autocomplete="off" />
+        </div>
+      </div>
+    </div>
+    <div class="z-20 sm:pt-16 sm:pb-16 pb-32 pt-14">
     <div v-if="currentDocument" class="flex flex-col">
       <h1 id="document-title" class="text-2xl md:text-4xl text-red-700 font-display mx-auto mb-5">{{ currentDocument.data.name }}</h1>
       <p class="text-sm md:text-base font-display mx-auto text-justify mb-5">{{ currentDocument.data.description }}</p>
@@ -9,9 +31,8 @@
           <div class="flex flex-row">
             <span class="text-2xl md:text-3xl text-red-700 font-display mr-3">{{ chapter.id }}</span>
             <span class="text-lg md:text-2xl font-display">{{ chapter.title }}</span>
-            <button type="button" @click.prevent="scrollToTop" class="my-auto ml-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs rounded text-blue-gray-700 bg-blue-gray-100 hover:bg-blue-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
-              <span class="text-sm">Return to top</span>
-              <ArrowUpIcon class="ml-2 my-auto h-3 w-3" />
+            <button type="button" @click.prevent="scrollToTop" class="my-auto ml-auto inline-flex items-center px-2.5 py-1.5 border border-transparent text-xs rounded bg-blue-gray-100 hover:bg-blue-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-sky-500">
+              <ArrowUpIcon class="h-4 w-4" />
             </button>
           </div>
           <div v-if="chapter.sections" class="flex flex-col px-5">
@@ -40,15 +61,16 @@
       </router-link>
     </div>
   </div>
+  </div>
 </template>
 
 <script>
 import {
-  computed, onMounted, onUpdated, toRefs,
+  computed, onBeforeUnmount, onMounted, onUpdated, toRefs, ref,
 } from 'vue';
 import Mark from 'mark.js';
 import { useI18n } from 'vue-i18n';
-import { ArrowUpIcon } from '@heroicons/vue/solid';
+import { ArrowUpIcon, SearchIcon } from '@heroicons/vue/solid';
 import TheTableOfContents from './TheTableOfContents.vue';
 import useDocumentsStore from '../stores/documents';
 
@@ -56,6 +78,7 @@ export default {
   name: 'TheReader',
   components: {
     ArrowUpIcon,
+    SearchIcon,
     TheTableOfContents,
   },
   setup() {
@@ -95,6 +118,10 @@ export default {
       }
       return currentDocument;
     });
+    const lastScrollPosition = ref(0);
+    const scrollOffset = (58);
+    const showSearch = ref(true);
+    // const columnScrollPosition = computed(() => document.getElementById('main').scrollTop);
     const scrollToTop = () => {
       const main = document.getElementById('main');
       main.scrollTop = 0;
@@ -113,8 +140,24 @@ export default {
         window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
       }
     };
+    const scrollHandler = () => {
+      const columnScrollPosition = document.getElementById('main').scrollTop;
+      if (columnScrollPosition < 0) {
+        return;
+      }
+      if (Math.abs(columnScrollPosition - lastScrollPosition.value) < scrollOffset.value) {
+        return;
+      }
+      showSearch.value = searchTerm.value ? true : columnScrollPosition < lastScrollPosition.value;
+      lastScrollPosition.value = columnScrollPosition;
+    };
     onMounted(async () => {
+      lastScrollPosition.value = document.getElementById('main').scrollTop;
+      window.addEventListener('scroll', scrollHandler, true);
       markDocument();
+    });
+    onBeforeUnmount(() => {
+      window.removeEventListener('scroll', scrollHandler);
     });
     onUpdated(async () => {
       markDocument();
@@ -123,10 +166,13 @@ export default {
       t,
       locale,
       searchTerm,
+      showSearch,
+      scrollHandler,
       currentDocument,
       filteredDocument,
       scrollToTop,
-      ArrowUpIcon,
+      lastScrollPosition,
+      // columnScrollPosition,
       TheTableOfContents,
     };
   },
@@ -136,5 +182,14 @@ export default {
 <style>
 mark {
   @apply bg-green-300 rounded-sm;
+}
+
+#search {
+  transform: translateY(0);
+  transition: transform 250ms linear;
+}
+
+#search.is-hidden {
+  transform: translateY(-100%);
 }
 </style>

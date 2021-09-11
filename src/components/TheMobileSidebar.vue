@@ -1,5 +1,19 @@
 <template>
+  <div>
+  <div v-if="!sidebarOpen && !splashScreen"
+      class="md:hidden z-40 absolute top-0 left-0 -mr-12 pt-1">
+    <button
+        @click="openSidebar()"
+        class="ml-1 flex items-center justify-center h-10 w-10 rounded-full border bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
+        tabindex="0">
+      <span class="sr-only">Open sidebar</span>
+      <MenuAlt2Icon
+          class="h-6 w-6"
+          aria-hidden="true" />
+    </button>
+  </div>
   <TransitionRoot as="template" :show="sidebarOpen">
+
     <Dialog as="div" static class="fixed inset-0 flex z-40 md:hidden">
       <TransitionChild as="template" enter="transition-opacity ease-linear duration-300" enter-from="opacity-0" enter-to="opacity-100" leave="transition-opacity ease-linear duration-300" leave-from="opacity-100" leave-to="opacity-0">
         <DialogOverlay class="fixed inset-0 bg-gray-600 bg-opacity-75" />
@@ -30,13 +44,13 @@
                 </router-link>
               </div>
               <div class="space-y-1">
-                <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                <h3 class="px-3 mb-2 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   {{ t('sidebar.language') }}
                 </h3>
                 <TheLanguageSelector />
               </div>
               <div class="space-y-1">
-                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider" id="projects-headline">
+                <h3 class="px-3 text-xs font-semibold text-gray-500 uppercase tracking-wider">
                   {{ t('sidebar.external_links') }}
                 </h3>
                 <div class="space-y-1" role="group" aria-labelledby="projects-headline">
@@ -61,6 +75,7 @@
       </div>
     </Dialog>
   </TransitionRoot>
+  </div>
 </template>
 
 <script>
@@ -87,6 +102,7 @@ import { SearchIcon } from '@heroicons/vue/solid';
 import { useI18n } from 'vue-i18n';
 import TheLanguageSelector from './TheLanguageSelector.vue';
 import useNavigationStore from '../stores/navigation';
+import useApplicationStore from '../stores/application';
 import router from '../router';
 
 export default {
@@ -110,7 +126,9 @@ export default {
   },
   setup() {
     const navStore = useNavigationStore();
-    const { closeSidebar } = navStore;
+    const applicationStore = useApplicationStore();
+    const { splashScreen } = toRefs(applicationStore);
+    const { closeSidebar, openSidebar } = navStore;
     const { sidebarOpen } = toRefs(navStore);
     const navigation = navStore.menuItems;
     const activeRoute = computed(() => router.currentRoute.value.path);
@@ -123,7 +141,9 @@ export default {
       isActive,
       navigation,
       closeSidebar,
+      openSidebar,
       sidebarOpen,
+      splashScreen,
     };
   },
 };
