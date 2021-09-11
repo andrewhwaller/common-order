@@ -1,6 +1,6 @@
 <template>
   <TransitionRoot as="template" :show="splashScreen">
-    <Dialog as="div" static class="fixed inset-0 overflow-hidden">
+    <Dialog as="div" static class="z-50 fixed inset-0 overflow-hidden">
       <div class="absolute inset-0 overflow-hidden">
         <TransitionChild as="template" enter="transform transition ease-in-out duration-1000 sm:duration-500" enter-from="-translate-y-full" enter-to="translate-y-0" leave="transform transition ease-in-out duration-1000 sm:duration-500" leave-from="translate-y-0" leave-to="-translate-y-full">
           <div class="absolute inset-0">
