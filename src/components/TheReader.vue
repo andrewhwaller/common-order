@@ -1,7 +1,7 @@
 <template>
   <div>
-    <div id="search" :class="{ 'is-hidden': !showSearch }" class="z-30 px-4 sticky top-0 left-0 right-0 flex flex-1 px-10 md:px-2 lg:px-0" v-if="currentDocument && $route.name === 'reader'">
-      <div class="w-full flex md:ml-0 bg-gray-100 px-4 py-2 shadow bg-white">
+    <div id="search" :class="{ 'is-hidden': !showSearch }" class="z-30 sticky top-0 left-0 right-0 border-gray-500 border-b" v-if="currentDocument && $route.name === 'reader'">
+      <div class="w-full flex bg-gray-100 px-4 py-2 bg-gray-100">
         <label for="search-field" class="sr-only">{{ t('navbar.search_placeholder') }}</label>
         <div class="relative w-full text-gray-400 focus-within:text-gray-600">
           <div class="absolute inset-y-0 left-0 flex items-center pointer-events-none">
@@ -13,7 +13,7 @@
               class="block w-full h-full pl-8 pr-3 py-2 border-transparent
               md:text-lg text-gray-900 placeholder-gray-500 focus:outline-none
               focus:placeholder-gray-400 focus:ring-0 focus:border-transparent
-              sm:text-sm"
+              sm:text-sm bg-gray-100"
               :placeholder="t('navbar.search_placeholder')"
               type="search"
               name="document-search"
