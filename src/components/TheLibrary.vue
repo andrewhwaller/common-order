@@ -1,5 +1,5 @@
 <template>
-  <div class="flex flex-col">
+  <div class="flex flex-col sm:pt-16 sm:pb-16 pb-32 pt-14">
     <h1 class="text-2xl md:text-4xl text-red-700 font-display mb-5">{{ t('library.title') }}</h1>
     <div class="bg-white shadow overflow-hidden sm:rounded-md">
       <ul class="divide-y divide-gray-200">
