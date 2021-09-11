@@ -1,7 +1,7 @@
 <template>
   <div>
   <div v-if="!sidebarOpen && !splashScreen"
-      class="md:hidden z-40 absolute top-0 left-0 -mr-12 pt-2 pl-1">
+      class="md:hidden z-40 absolute top-0 left-0 -mr-12 pt-1">
     <button
         @click="openSidebar()"
         class="ml-1 flex items-center justify-center h-10 w-10 rounded-full border bg-white shadow-md focus:outline-none focus:ring-2 focus:ring-inset focus:ring-gray-500"
