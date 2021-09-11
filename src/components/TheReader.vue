@@ -21,7 +21,7 @@
         </div>
       </div>
     </div>
-    <div class="z-20 sm:py-16 py-24">
+    <div class="z-20 sm:pt-16 sm:pb-16 pb-32 pt-14">
     <div v-if="currentDocument" class="flex flex-col">
       <h1 id="document-title" class="text-2xl md:text-4xl text-red-700 font-display mx-auto mb-5">{{ currentDocument.data.name }}</h1>
       <p class="text-sm md:text-base font-display mx-auto text-justify mb-5">{{ currentDocument.data.description }}</p>
