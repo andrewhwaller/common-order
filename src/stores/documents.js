@@ -5,6 +5,7 @@ const useDocumentsStore = defineStore('documents', {
     searchTerm: '',
     currentDocument: null,
     documents: [],
+    loading: false,
   }),
   actions: {
     async getAllDocuments() {

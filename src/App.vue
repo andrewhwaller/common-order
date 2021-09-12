@@ -38,11 +38,11 @@ export default {
     const documentsStore = useDocumentsStore();
     const navStore = useNavigationStore();
     const { closeSidebar, openSidebar, sidebarOpen } = navStore;
-    onMounted(() => {
-      documentsStore.getAllDocuments();
-      setTimeout(async () => {
+    onMounted(async () => {
+      await documentsStore.getAllDocuments();
+      if (documentsStore.loading === false) {
         applicationStore.hideSplashScreen();
-      }, 1000);
+      }
     });
     return {
       splashScreen,
