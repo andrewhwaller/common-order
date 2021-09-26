@@ -42,7 +42,6 @@ import {
 } from 'vue';
 import Mark from 'mark.js';
 import { useI18n } from 'vue-i18n';
-import { createScriptLoader } from '@bigcommerce/script-loader';
 import { ArrowUpIcon } from '@heroicons/vue/solid';
 import TheTableOfContents from './TheTableOfContents.vue';
 import useDocumentsStore from '../stores/documents';
