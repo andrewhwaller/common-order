@@ -2,9 +2,9 @@
   <div class="flex flex-col">
     <h1 id="document-title" class="text-2xl md:text-4xl text-red-700 font-display mx-auto mb-5">{{ currentDocument.data.name }}</h1>
     <p class="text-sm md:text-base font-display mx-auto text-justify mb-5">{{ currentDocument.data.description }}</p>
-    <TheTableOfContents :chapters="currentDocument.data.chapters" class="mb-5" />
+    <TheTableOfContents v-if="currentDocument.data.chapters" :chapters="currentDocument.data.chapters" class="mb-5" />
     <div id="markable">
-      <div v-for="chapter in filteredDocument.data.chapters" :key="chapter.name" v-bind:id="chapter.id" class="pt-10">
+      <div v-if="filteredDocument.data.chapters" v-for="chapter in filteredDocument.data.chapters" :key="chapter.name" v-bind:id="chapter.id" class="pt-10">
         <div class="flex flex-row">
           <span class="text-2xl md:text-3xl text-red-700 font-display mr-3">{{ chapter.id }}</span>
           <span class="text-lg md:text-2xl font-display">{{ chapter.title }}</span>
@@ -25,16 +25,24 @@
           </div>
         </div>
       </div>
+      <div v-else class="pt-10">
+        <div class="flex flex-col px-5">
+          <div class="my-2">
+            <p class="text-base md:text-lg font-display text-justify whitespace-pre-wrap leading-relaxed">{{ filteredDocument.data.text }}</p>
+          </div>
+        </div>
+      </div>
     </div>
   </div>
 </template>
 
 <script>
 import {
-  computed, onMounted, onUpdated, toRefs,
+  computed, onMounted, onUpdated, ref, toRefs, watch,
 } from 'vue';
 import Mark from 'mark.js';
 import { useI18n } from 'vue-i18n';
+import { createScriptLoader } from '@bigcommerce/script-loader';
 import { ArrowUpIcon } from '@heroicons/vue/solid';
 import TheTableOfContents from './TheTableOfContents.vue';
 import useDocumentsStore from '../stores/documents';
@@ -42,7 +50,7 @@ import useApplicationStore from '../stores/application';
 import router from '../router';
 
 export default {
-  name: 'TheTextDisplay.vue',
+  name: 'TheTextDisplay',
   components: {
     ArrowUpIcon,
     TheTableOfContents,
@@ -82,10 +90,12 @@ export default {
     next();
   },
   setup() {
+    const { t, locale } = useI18n();
+    const reactiveLocale = ref(locale);
     const documentsStore = useDocumentsStore();
     const { searchTerm, currentDocument } = toRefs(documentsStore);
     const filteredDocument = computed(() => {
-      if (searchTerm.value.length) {
+      if (searchTerm.value.length && currentDocument.value.data.chapters) {
         const document = {
           data: {
             chapters: [],
@@ -95,18 +105,15 @@ export default {
         currentDocument.value.data.chapters.forEach((chapter) => {
           if (chapter.sections) {
             const sections = chapter.sections.filter((section) => section.text.toLowerCase().includes(searchTerm.value.toLowerCase()));
-
             const filteredChapter = {
               id: chapter.id,
               title: chapter.title,
               sections,
             };
-
             if (filteredChapter.sections.length > 0) {
               document.data.chapters.push(filteredChapter);
             }
           }
-
           if (chapter.text && chapter.text.toLowerCase().includes(searchTerm.value.toLowerCase())) {
             document.data.chapters.push(chapter);
           }
@@ -127,8 +134,8 @@ export default {
         } else if (searchTerm.value.length <= 2) {
           await instance.unmark();
         }
-        window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
       }
+      window.refTagger.tag(document.getElementById('markable'));
     };
     const scrollToTop = () => {
       const main = document.getElementById('main');
@@ -141,6 +148,7 @@ export default {
       await markDocument();
     });
     return {
+      reactiveLocale,
       currentDocument,
       filteredDocument,
       scrollToTop,
@@ -149,7 +157,10 @@ export default {
 };
 </script>
 
-<style scoped>
+<style>
+a.rtBibleRef {
+  color: #0EA5E9;
+}
 mark {
   @apply bg-green-300 rounded-sm;
 }

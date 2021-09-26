@@ -31,6 +31,7 @@
 </template>
 
 <script>
+// TODO: Add localizations for text here
 import { useI18n } from 'vue-i18n';
 
 export default {

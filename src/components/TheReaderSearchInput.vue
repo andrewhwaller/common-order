@@ -14,7 +14,6 @@
               focus:placeholder-gray-400 focus:ring-0 focus:border-transparent
               sm:text-sm bg-gray-100"
             :placeholder="t('navbar.search_placeholder')"
-            type="search"
             name="document-search"
             autocomplete="off" />
       </div>

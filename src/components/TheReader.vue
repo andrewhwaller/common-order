@@ -19,4 +19,7 @@ export default {
 </script>
 
 <style>
+mark {
+  @apply bg-green-300 rounded-sm;
+}
 </style>
