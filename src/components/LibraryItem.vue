@@ -1,6 +1,6 @@
 <template>
   <li>
-    <router-link :to="{ name: 'reader', params: { slug: document.data.slug }}" @click="setCurrentDocument(document)" class="block hover:bg-gray-50">
+    <a @click="goToItem(document)" class="cursor-pointer block hover:bg-gray-50">
       <div class="px-4 py-4 sm:px-6">
         <div class="flex items-center justify-between">
           <span class="text-sm md:text-base font-medium text-sky-700">
@@ -20,12 +20,13 @@
           </div>
         </div>
       </div>
-    </router-link>
+    </a>
   </li>
 </template>
 
 <script>
 import useDocumentsStore from '../stores/documents';
+import router from '../router';
 
 export default {
   name: 'LibraryItem',
@@ -38,8 +39,17 @@ export default {
   setup() {
     const documentsStore = useDocumentsStore();
     const { setCurrentDocument } = documentsStore;
+    const goToItem = async (item) => {
+      setCurrentDocument(item);
+      router.push({
+        name: 'text',
+        params: {
+          slug: item.data.slug,
+        },
+      });
+    };
     return {
-      setCurrentDocument,
+      goToItem,
     };
   },
 };
