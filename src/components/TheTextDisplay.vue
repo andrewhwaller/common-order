@@ -134,7 +134,7 @@ export default {
           await instance.unmark();
         }
       }
-      window.refTagger.tag(document.getElementById('markable'));
+      window.dispatchEvent(new Event('esv-crossref.trigger-linkify'));
     };
     const scrollToTop = () => {
       const main = document.getElementById('main');
