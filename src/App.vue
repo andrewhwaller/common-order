@@ -1,5 +1,6 @@
 <template>
   <div>
+    <ReloadPWA />
     <TheSplashScreen v-bind:display="splashScreen" />
     <div class="h-screen flex overflow-hidden bg-gray-100">
       <TheMobileSidebar />
@@ -22,12 +23,14 @@ import { onMounted, toRefs } from 'vue';
 import TheMobileSidebar from './components/TheMobileSidebar.vue';
 import TheDesktopSidebar from './components/TheDesktopSidebar.vue';
 import TheSplashScreen from './components/TheSplashScreen.vue';
+import ReloadPWA from './components/ReloadPWA.vue';
 import useDocumentsStore from './stores/documents';
 import useApplicationStore from './stores/application';
 import useNavigationStore from './stores/navigation';
 
 export default {
   components: {
+    ReloadPWA,
     TheDesktopSidebar,
     TheMobileSidebar,
     TheSplashScreen,
