@@ -35,6 +35,7 @@
     "eslint-plugin-vue": "^7.14.0",
     "netlify-cli": "^6.15.0",
     "postcss": "^8.3.6",
-    "vite-plugin-pwa": "^0.11.13"
+    "vite-plugin-pwa": "^0.11.13",
+    "workbox-precaching": "^6.4.2"
   }
 }
