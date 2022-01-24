@@ -2,11 +2,40 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
+const getCache = ({ pattern, name }) => ({
+  urlPattern: pattern,
+  handler: 'NetworkFirst',
+  options: {
+    cacheName: name,
+    expiration: {
+      maxEntries: 500,
+      maxAgeSeconds: 60 * 60 * 24 * 365 * 2, // 2 years
+    },
+    cacheableResponse: {
+      statuses: [200],
+    },
+  },
+});
+
+const matchDocumentsPath = ({ url, request, event }) => url.includes('/api/documents');
+
 export default defineConfig({
   plugins: [
     vue(),
     VitePWA({
       includeAssets: ['favicon.ico', 'robots.txt', 'apple-touch-icon.png'],
+      workbox: {
+        runtimeCaching: [
+          getCache({
+            pattern: '/^https://fonts.googleapis.com/',
+            name: 'google-fonts-stylesheets',
+          }),
+          getCache({
+            name: 'documents',
+            pattern: '/api/documents',
+          }),
+        ],
+      },
       registerType: 'autoUpdate',
       manifest: {
         name: 'Common Order',
