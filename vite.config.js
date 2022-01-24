@@ -2,9 +2,9 @@ import { defineConfig } from 'vite';
 import vue from '@vitejs/plugin-vue';
 import { VitePWA } from 'vite-plugin-pwa';
 
-const getCache = ({ pattern, name }) => ({
+const getCache = ({ pattern, name, handler }) => ({
   urlPattern: pattern,
-  handler: 'NetworkFirst',
+  handler,
   options: {
     cacheName: name,
     expiration: {
@@ -17,8 +17,6 @@ const getCache = ({ pattern, name }) => ({
   },
 });
 
-const matchDocumentsPath = ({ url, request, event }) => url.includes('/api/documents');
-
 export default defineConfig({
   plugins: [
     vue(),
@@ -27,12 +25,14 @@ export default defineConfig({
       workbox: {
         runtimeCaching: [
           getCache({
-            pattern: '/^https://fonts.googleapis.com/',
             name: 'google-fonts-stylesheets',
+            pattern: /^https:\/\/fonts\.googleapis\.com/,
+            handler: 'StaleWhileRevalidate',
           }),
           getCache({
-            name: 'documents',
+            name: 'documents-api',
             pattern: '/api/documents',
+            handler: 'StaleWhileRevalidate',
           }),
         ],
       },
