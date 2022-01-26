@@ -1,12 +1,17 @@
 import { createApp } from 'vue';
 import { createPinia } from 'pinia';
 import { createI18n } from 'vue-i18n';
+import { registerSW } from 'virtual:pwa-register';
 import router from './router';
 import App from './App.vue';
 import en from './translations/en.json';
 import es from './translations/es.json';
 import fr from './translations/fr.json';
 import './main.css';
+
+const updateSW = registerSW({
+  onOfflineReady() {},
+});
 
 const i18n = createI18n({
   messages: {
