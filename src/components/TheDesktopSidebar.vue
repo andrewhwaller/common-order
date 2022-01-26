@@ -13,7 +13,7 @@
           <nav class="flex-1 px-2 py-4 space-y-8 bg-white">
             <div class="space-y-1">
               <router-link v-for="item in navigation" :key="item.name" :to="item.href" :class="[isActive(item.href) ? 'bg-gray-100 text-gray-900 font-medium' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'group flex items-center px-2 py-2 text-base rounded-md']">
-                <component :is="item.icon" :class="[isActive(item.href) ? 'text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
+                <component :is="item.icon" :class="[isActive(item.ref) ? 'text-gray-900' : 'text-gray-600 hover:bg-gray-50 hover:text-gray-900', 'mr-4 flex-shrink-0 h-6 w-6']" aria-hidden="true" />
                 {{ t(`sidebar['${item.ref}']`) }}
               </router-link>
             </div>
@@ -90,7 +90,7 @@ export default {
     const navStore = useNavigationStore();
     const navigation = navStore.menuItems;
     const activeRoute = computed(() => router.currentRoute.value.path);
-    const isActive = (path) => path === activeRoute.value;
+    const isActive = (ref) => router.currentRoute.value.matched.some(({ name }) => name === ref);
     const { t, locale } = useI18n();
     return {
       t,
