@@ -27,7 +27,7 @@
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^2.4.0",
-    "@vue/compiler-sfc": "^3.0.5",
+    "@vue/compiler-sfc": "^3.2.31",
     "autoprefixer": "^10.3.1",
     "eslint": "^7.32.0",
     "eslint-config-airbnb-base": "^14.2.1",
