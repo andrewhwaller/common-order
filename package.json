@@ -10,7 +10,7 @@
     "@headlessui/vue": "^1.4.0",
     "@heroicons/vue": "^1.0.6",
     "@panter/vue-i18next": "^0.15.2",
-    "@tailwindcss/aspect-ratio": "^0.2.1",
+    "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.4.1",
@@ -20,20 +20,20 @@
     "mark.js": "^8.11.1",
     "pinia": "^2.0.0-rc.3",
     "tailwindcss": "^2.2.7",
-    "vite": "^2.4.4",
+    "vite": "^2.9.8",
     "vue": "^3.2.33",
     "vue-i18n": "^9.1.10",
-    "vue-router": "^4.0.10"
+    "vue-router": "^4.0.15"
   },
   "devDependencies": {
     "@intlify/vite-plugin-vue-i18n": "^2.4.0",
     "@vue/compiler-sfc": "^3.2.33",
     "autoprefixer": "^10.3.1",
     "eslint": "^7.32.0",
-    "eslint-config-airbnb-base": "^14.2.1",
+    "eslint-config-airbnb-base": "^15.0.0",
     "eslint-plugin-import": "^2.26.0",
     "eslint-plugin-vue": "^8.7.1",
-    "netlify-cli": "^6.1.0",
+    "netlify-cli": "^10.2.0",
     "postcss": "^8.3.6"
   }
 }
