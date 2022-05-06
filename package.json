@@ -13,7 +13,7 @@
     "@tailwindcss/aspect-ratio": "^0.4.0",
     "@tailwindcss/forms": "^0.3.3",
     "@tailwindcss/line-clamp": "^0.2.1",
-    "@tailwindcss/typography": "^0.4.1",
+    "@tailwindcss/typography": "^0.5.2",
     "@vitejs/plugin-vue": "^2.3.2",
     "faunadb": "^4.3.0",
     "i18next": "^21.6.16",
