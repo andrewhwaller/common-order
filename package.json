@@ -22,7 +22,7 @@
     "tailwindcss": "^2.2.7",
     "vite": "^2.9.8",
     "vue": "^3.2.33",
-    "vue-i18n": "^9.1.7",
+    "vue-i18n": "^9.1.10",
     "vue-router": "^4.0.15"
   },
   "devDependencies": {
