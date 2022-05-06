@@ -15,7 +15,7 @@
     "@tailwindcss/line-clamp": "^0.2.1",
     "@tailwindcss/typography": "^0.5.2",
     "@vitejs/plugin-vue": "^2.3.2",
-    "faunadb": "^4.3.0",
+    "faunadb": "^4.5.4",
     "i18next": "^21.6.16",
     "mark.js": "^8.11.1",
     "pinia": "^2.0.14",
