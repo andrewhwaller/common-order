@@ -26,7 +26,7 @@
     "vue-router": "^4.1.6"
   },
   "devDependencies": {
-    "@intlify/vite-plugin-vue-i18n": "^3.4.0",
+    "@intlify/vite-plugin-vue-i18n": "^6.0.3",
     "@vue/compiler-sfc": "^3.2.45",
     "autoprefixer": "^10.4.13",
     "eslint": "^8.29.0",
